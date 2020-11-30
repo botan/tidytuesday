@@ -1,0 +1,93 @@
+---
+title: "Palmer Penguins"
+subtitle: "TidyTuesday 2020, Week 31"
+author: "Botan Ağın"
+date: "11/30/2020"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+```
+
+```{r packages}
+library(tidyverse)
+library(showtext)
+font_add_google("Righteous")
+font_add_google("IBM Plex Sans")
+library(palmerpenguins)
+```
+
+```{r tidy}
+penguins_long <- penguins %>% 
+  janitor::clean_names() %>% 
+  pivot_longer(
+    bill_length_mm:body_mass_g, 
+    names_to = "attribute", 
+    values_to = "value"
+  ) %>% 
+  mutate(
+    attribute = attribute %>% 
+      str_replace_all("_", " ") %>% 
+      str_to_title() %>% 
+      str_replace("Mm$", "(mm)") %>% 
+      str_replace("G$", "(g)"),
+    sex = str_to_title(sex)
+  ) %>% 
+  mutate_if(is.character, as.factor) %>% 
+  drop_na()
+```
+
+```{r plot,  fig.width=6, fig.height=9}
+img1 <- magick::image_read("https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/man/figures/lter_penguins.png")
+img2 <- magick::image_read("https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/man/figures/culmen_depth.png")
+
+pdf("palmerpenguins.pdf", width = 6, height = 9)
+
+showtext_auto()
+penguins_long %>% 
+  ggplot(aes(value, species, fill = species, color = species)) +
+  ggridges::geom_density_ridges(alpha = 0.75) + 
+  labs(
+    title = "\n \n Palmer Penguins",
+    subtitle = "Distrubutions of Attributes by Species \n \n",
+    caption = "\n \n \n \n
+    Data: github.com/allisonhorst/palmerpenguins
+    Source: Gorman, Williams & Fraser (2014)
+    Artwork by @allison_horst
+    Visualization by @botanagin",
+    fill = "Species: "
+  ) + 
+  theme_minimal() + 
+  theme(
+    axis.title = element_blank(),
+    axis.text = element_text(size = 10),
+    axis.text.y = element_blank(),
+    strip.text = element_text(family = "IBM Plex Sans", 
+                              size = 11),
+    legend.position = "none",
+    plot.title = element_text(hjust = 0.1,
+                              family = "Righteous",
+                              face = "bold",
+                              size = 16),
+    plot.subtitle = element_text(hjust = 0.1, 
+                                 family = "Righteous",
+                                 face = "bold",
+                                 color = "gray",
+                                 size = 14),
+    plot.caption = element_text(hjust = 1, 
+                                family = "IBM Plex Sans"),
+    plot.margin = margin(15, 15, 15, 15, unit = "pt")
+  ) +
+  scale_fill_manual(values = c("darkorange", "darkorchid", "darkcyan")) + 
+  scale_color_manual(values = c("darkorange", "darkorchid", "darkcyan")) +
+  facet_wrap(~ attribute, scales = "free", ncol = 1)
+
+grid::grid.raster(img1, width = 0.3, height = 0.15, x = 0.8, y = 0.9)
+grid::grid.raster(img2, width = 0.3, height = 0.15, x = 0.2, y = 0.1)
+
+dev.off()
+```
+
