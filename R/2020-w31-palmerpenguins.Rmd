@@ -44,7 +44,7 @@ penguins_long <- penguins %>%
 img1 <- magick::image_read("https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/man/figures/lter_penguins.png")
 img2 <- magick::image_read("https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/man/figures/culmen_depth.png")
 
-pdf("palmerpenguins.pdf", width = 6, height = 9)
+pdf("2020-w31-palmerpenguins.pdf", width = 6, height = 9)
 
 showtext_auto()
 penguins_long %>% 
