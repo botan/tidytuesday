@@ -61,7 +61,7 @@ tr_mobile %>%
   labs(
     title = "MOBILE PHONE USAGE IN
     <span style='color:#00CED1'>TURKEY</span>",
-    subtitle = "It started by a privilege and evolved to an obligation in two decades \n \n \n",
+    subtitle = "It started as a luxury and became a necessity in two decades \n \n \n",
     caption = "\n \n
     Data: ourworldindata.org/technology-adoption
     Source: Hannah Ritchie (2017)
