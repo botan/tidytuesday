@@ -1,0 +1,94 @@
+---
+title: "Historical Phones"
+subtitle: "TidyTuesday 2020, Week 46"
+author: "Botan Ağın"
+date: "12/2/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages}
+library(tidyverse)
+library(waffle)
+library(hrbrthemes)
+library(ggtext)
+library(showtext)
+library(here)
+```
+
+```{r fonts}
+font_add("Roboto Condensed",
+         "RobotoCondensed-Regular.ttf", 
+         bold = "RobotoCondensed-Bold.ttf")
+font_add("Roboto Condensed Light", 
+         "RobotoCondensed-Light.ttf")
+font_add("FontAwesome5Free-Solid", 
+         "fa-solid-900.ttf")
+font_add("FontAwesome5Free-Regular", 
+         "fa-regular-400.ttf")
+font_add("FontAwesome5Brands-Regular",
+         "fa-brands-400.ttf")
+showtext_auto()
+```
+
+```{r data}
+tt <- tidytuesdayR::tt_load(2020, week = 46)
+mobile <- tt$mobile
+```
+
+```{r wrangle}
+tr_mobile <- mobile %>% 
+  filter(entity == "Turkey") %>% 
+  mutate(mobile_subs = round(mobile_subs, 0)) %>% 
+  filter(year %in% c(1997, 2007, 2017)) %>% 
+  select(year, mobile_subs) %>% 
+  mutate(no_subs = 100 - mobile_subs) %>% 
+  pivot_longer(!year, names_to = "subscription", values_to = "n")
+```
+
+```{r plot}
+pdf(here("plots", "2020-w46-phones.pdf"), width = 10, height = 7)
+
+tr_mobile %>% 
+  ggplot(aes(label = subscription, values = n)) +
+  geom_pictogram(aes(colour = subscription), 
+                 size = 5,
+                 n_rows = 10,
+                 make_proportional = TRUE) + 
+  labs(
+    title = "MOBILE PHONE USAGE IN
+    <span style='color:#00CED1'>TURKEY</span>",
+    subtitle = "It started by a privilege and evolved to an obligation in two decades \n \n \n",
+    caption = "\n \n
+    Data: ourworldindata.org/technology-adoption
+    Source: Hannah Ritchie (2017)
+    Visualization by @botanagin"
+  ) +
+  scale_color_manual(
+    guide = FALSE,
+    values = c("black", "darkred")
+  ) +
+  scale_label_pictogram(
+    guide = FALSE,
+    values = c("mobile-alt", "times")
+  ) +
+  coord_equal() +
+  theme_ipsum_rc(grid = " ") +
+  theme_enhance_waffle() +
+  theme(
+    strip.text = element_text(hjust = 0.5,
+                              face = "bold"),
+    plot.title = element_markdown(hjust = 0.5,
+                              vjust = 0),
+    plot.subtitle = element_text(hjust = 0.5),
+    plot.caption = element_text(hjust = 0.5),
+    plot.margin = margin(0, 20, 0, 20, unit = "pt")
+  ) +
+  facet_wrap(~ year, ncol = 3)
+
+dev.off()
+```
+
