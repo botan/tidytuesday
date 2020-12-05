@@ -38,7 +38,6 @@ peaks_tidy <- members %>%
   mutate(peak_name = str_to_upper(peak_name) %>% fct_reorder(n)) %>% 
   arrange(desc(n)) %>% 
   slice_head(n = 40) 
-  
 ```
 
 ```{r plot}
@@ -47,12 +46,12 @@ pdf(here("plots", "2020-w39-himalayanclimbing.pdf"), height = 9, width = 7)
 peaks_tidy %>% 
   ggplot(aes(value, peak_name, group = peak_name, color = success)) +
   geom_point(size = 4, stroke = 4, shape = 1) +
-  geom_line(color = "gray10", size = 1, linetype = "longdash") +
+  geom_line(color = "gray20", size = 1, linetype = "longdash") +
   labs(
     x = "",
     y = "",
-    title = "MOST <span style='color:orange'>POPULAR</span> TWENTY <span style='color:lightsteelblue'>PEAKS</span>",
-    subtitle = "How many mountain climbers have <span style='color:navy'>successed</span> or <span style='color:firebrick'>failed</span> <br> on most attempted himalayas peaks",
+    title = "MOST <span style='color:darkorange'>POPULAR</span> TWENTY <span style='color:lightsteelblue'>PEAKS</span>",
+    subtitle = "How many mountain climbers have <span style='color:navy'>succeeded</span> or <span style='color:firebrick'>failed</span> <br> with their attempted on the most popular twenty <span style='color:black'>Himalayan</span> peaks",
     caption = "\n \n Data: himalayandatabase.com
     Visualization by @botanagin"
   ) +
