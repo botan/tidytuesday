@@ -1,0 +1,79 @@
+---
+title: "Himalayan Climbing Expeditions"
+author: "Botan Ağın"
+date: "12/4/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages}
+library(tidyverse)
+library(ggtext)
+library(showtext)
+library(here)
+```
+
+```{r font}
+font_add_google("Fjalla One")
+showtext_auto()
+```
+
+```{r data}
+tt <- tidytuesdayR::tt_load(2020, week = 39)
+peaks <- tt$peaks
+members <- tt$members
+```
+
+```{r wrangle}
+peaks_tidy <- members %>% 
+  group_by(peak_name) %>% 
+  summarise(n = n(),
+            success = sum(success),
+            fail = n - success) %>% 
+  ungroup() %>% 
+  pivot_longer(success:fail, "success") %>% 
+  mutate(peak_name = str_to_upper(peak_name) %>% fct_reorder(n)) %>% 
+  arrange(desc(n)) %>% 
+  slice_head(n = 40) 
+  
+```
+
+```{r plot}
+pdf(here("plots", "2020-w39-himalayanclimbing.pdf"), height = 9, width = 7)
+
+peaks_tidy %>% 
+  ggplot(aes(value, peak_name, group = peak_name, color = success)) +
+  geom_point(size = 4, stroke = 4, shape = 1) +
+  geom_line(color = "gray10", size = 1, linetype = "longdash") +
+  labs(
+    x = "",
+    y = "",
+    title = "MOST <span style='color:orange'>POPULAR</span> TWENTY <span style='color:lightsteelblue'>PEAKS</span>",
+    subtitle = "How many mountain climbers have <span style='color:navy'>successed</span> or <span style='color:firebrick'>failed</span> <br> on most attempted himalayas peaks",
+    caption = "\n \n Data: himalayandatabase.com
+    Visualization by @botanagin"
+  ) +
+  scale_x_log10() + 
+  scale_color_manual(values = c("firebrick", "navy")) +
+  theme_minimal() +
+  theme(
+    plot.title = element_markdown(size = 20, family = "Fjalla One"),
+    plot.subtitle = element_markdown(size = 14, family = "Fjalla One",
+                                     color = "gray30"),
+    plot.caption = element_text(size = 8, family = "Fjalla One",
+                                color = "gray30"),
+    axis.text = element_text(size = 9, family = "Fjalla One"),
+    panel.grid.minor = element_blank(),
+    legend.position = "none",
+    plot.background = element_rect(fill = "whitesmoke"),
+    plot.margin = margin(40, 40, 20, 20)
+  )
+
+dev.off()
+```
+
+
+
