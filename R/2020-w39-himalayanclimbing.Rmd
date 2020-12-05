@@ -50,7 +50,7 @@ peaks_tidy %>%
   labs(
     x = "",
     y = "",
-    title = "MOST <span style='color:darkorange'>POPULAR</span> TWENTY <span style='color:lightsteelblue'>PEAKS</span>",
+    title = "MOST POPULAR TWENTY <span style='color:lightsteelblue'>PEAKS</span>",
     subtitle = "How many mountain climbers have <span style='color:navy'>succeeded</span> or <span style='color:firebrick'>failed</span> <br> with their attempted on the most popular twenty <span style='color:black'>Himalayan</span> peaks",
     caption = "\n \n Data: himalayandatabase.com
     Visualization by @botanagin"
@@ -60,7 +60,7 @@ peaks_tidy %>%
   theme_minimal() +
   theme(
     plot.title = element_markdown(size = 20, family = "Fjalla One"),
-    plot.subtitle = element_markdown(size = 14, family = "Fjalla One",
+    plot.subtitle = element_markdown(size = 14, family = "Fjalla One", 
                                      color = "gray30"),
     plot.caption = element_text(size = 8, family = "Fjalla One",
                                 color = "gray30"),
@@ -73,6 +73,3 @@ peaks_tidy %>%
 
 dev.off()
 ```
-
-
-
