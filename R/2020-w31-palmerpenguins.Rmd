@@ -20,8 +20,8 @@ library(here)
 ```
 
 ```{r fonts}
-font_add_google("Righteous")
-font_add_google("IBM Plex Sans")
+font_add_google("Lobster")
+font_add_google("Dancing Script")
 showtext_auto()
 ```
 
@@ -56,9 +56,10 @@ penguins_long %>%
   ggplot(aes(value, species, fill = species, color = species)) +
   geom_density_ridges(alpha = 0.75) + 
   labs(
-    title = "\n \n Palmer Penguins",
-    subtitle = "Distrubutions of Attributes by Species \n \n",
-    caption = "\n \n \n \n
+    title = "\n Palmer Penguins",
+    subtitle = "Distrubutions of Attributes 
+    by Species \n",
+    caption = "\n \n \n
       Data: github.com/allisonhorst/palmerpenguins
       Source: Gorman, Williams & Fraser (2014)
       Artwork by @allison_horst
@@ -68,29 +69,34 @@ penguins_long %>%
   theme(
     axis.title = element_blank(),
     axis.text = element_text(size = 10),
+    axis.text.x = element_text(family = "Dancing Script"),
     axis.text.y = element_blank(),
-    strip.text = element_text(family = "IBM Plex Sans", 
-                              size = 11),
-    legend.position = "none",
-    plot.title = element_text(hjust = 0.1,
-                              family = "Righteous",
+    strip.text = element_text(family = "Lobster", 
+                              size = 12,
                               face = "bold",
-                              size = 16),
+                              color = "gray30"),
+    panel.grid = element_blank(),
+    legend.position = "none",
+    plot.background = element_rect(fill = "snow"),
+    plot.title = element_text(hjust = 0.1,
+                              family = "Lobster",
+                              face = "bold",
+                              size = 24),
     plot.subtitle = element_text(hjust = 0.1, 
-                                 family = "Righteous",
+                                 family = "Lobster",
                                  face = "bold",
-                                 color = "gray70",
-                                 size = 14),
+                                 color = "gray40",
+                                 size = 18),
     plot.caption = element_text(hjust = 1, 
-                                family = "IBM Plex Sans"),
+                                family = "Dancing Script", 
+                                size = 12),
     plot.margin = margin(15, 15, 15, 15, unit = "pt")
   ) +
   scale_fill_manual(values = c("darkorange", "darkorchid", "darkcyan")) + 
   scale_color_manual(values = c("darkorange", "darkorchid", "darkcyan")) +
-  facet_wrap(~ attribute, scales = "free", ncol = 1)
-grid::grid.raster(pengs, width = 0.3, height = 0.15, x = 0.8, y = 0.9)
-grid::grid.raster(bill, width = 0.3, height = 0.15, x = 0.2, y = 0.1)
+  facet_wrap(~ attribute, scales = "free", ncol = 1) 
+grid::grid.raster(bill, width = 0.33, height = 0.17, x = 0.77, y = 0.88)
+grid::grid.raster(pengs, width = 0.33, height = 0.17, x = 0.25, y = 0.1)
 
 dev.off()
 ```
-
