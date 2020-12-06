@@ -50,7 +50,8 @@ bill <- image_read(here("images", "culmen-depth.png"))
 ```
 
 ```{r plot}
-pdf(here("plots", "2020-w31-palmerpenguins.pdf"), width = 6, height = 9)
+png(here("plots", "2020-w31-palmerpenguins.png"), 
+    width = 6, height = 9, units = "in", res = 300)
 
 penguins_long %>% 
   ggplot(aes(value, species, fill = species, color = species)) +

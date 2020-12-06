@@ -50,7 +50,8 @@ tr_mobile <- mobile %>%
 ```
 
 ```{r plot}
-pdf(here("plots", "2020-w46-phones.pdf"), width = 10, height = 7)
+png(here("plots", "2020-w46-phones.png"), 
+    width = 10, height = 7, units = "in", res = 300)
 
 tr_mobile %>% 
   ggplot(aes(label = subscription, values = n)) +
@@ -91,4 +92,3 @@ tr_mobile %>%
 
 dev.off()
 ```
-

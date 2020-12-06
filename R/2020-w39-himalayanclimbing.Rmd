@@ -41,7 +41,8 @@ peaks_tidy <- members %>%
 ```
 
 ```{r plot}
-pdf(here("plots", "2020-w39-himalayanclimbing.pdf"), height = 9, width = 7)
+png(here("plots", "2020-w39-himalayanclimbing.png"), 
+    height = 9, width = 7, units = "in", res = 300)
 
 peaks_tidy %>% 
   ggplot(aes(value, peak_name, group = peak_name, color = success)) +
