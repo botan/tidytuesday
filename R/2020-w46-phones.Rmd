@@ -82,7 +82,7 @@ tr_mobile %>%
   theme(
     strip.text = element_text(hjust = 0.5, face = "bold"),
     plot.title = element_markdown(hjust = 0.5, vjust = 0),
-    plot.background = element_rect(fill = "gray98"),
+    plot.background = element_rect(fill = "gray100"),
     plot.subtitle = element_text(hjust = 0.5),
     plot.caption = element_text(hjust = 0.5),
     plot.margin = margin(55, 20, 55, 20, unit = "pt")
