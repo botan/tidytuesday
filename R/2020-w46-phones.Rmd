@@ -76,17 +76,16 @@ tr_mobile %>%
     guide = FALSE,
     values = c("mobile-alt", "times")
   ) +
-  coord_equal() +
+  coord_cartesian() +
   theme_ipsum_rc(grid = " ") +
   theme_enhance_waffle() +
   theme(
-    strip.text = element_text(hjust = 0.5,
-                              face = "bold"),
-    plot.title = element_markdown(hjust = 0.5,
-                              vjust = 0),
+    strip.text = element_text(hjust = 0.5, face = "bold"),
+    plot.title = element_markdown(hjust = 0.5, vjust = 0),
+    plot.background = element_rect(fill = "gray98"),
     plot.subtitle = element_text(hjust = 0.5),
     plot.caption = element_text(hjust = 0.5),
-    plot.margin = margin(0, 20, 0, 20, unit = "pt")
+    plot.margin = margin(55, 20, 55, 20, unit = "pt")
   ) +
   facet_wrap(~ year, ncol = 3)
 
