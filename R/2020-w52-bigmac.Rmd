@@ -18,15 +18,15 @@ library(showtext)
 library(here)
 ```
 
-```{r data}
-tt <- tidytuesdayR::tt_load(2020, week = 52)
-bigmac <- tt$`big-mac`
-```
-
 ```{r fonts}
 font_add_google("Merriweather")
 font_add_google("Old Standard TT")
 showtext_auto()
+```
+
+```{r data}
+tt <- tidytuesdayR::tt_load(2020, week = 52)
+bigmac <- tt$`big-mac`
 ```
 
 ```{r wrangle}
