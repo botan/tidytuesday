@@ -49,7 +49,7 @@ artwork_sizes %>%
   coord_polar(start = 0) +
   labs(
     title = "A Timeline for 2D Artwork Sizes \n in The Tate Gallery Collection \n",
-    subtitle = "The “coffee strain” plot shows the average areas (width x height) and aspect ratios<br> (width / height) by years of all 2D artworks created between __1545__ and __2012__ which<br> are exhibited by the Tate. Each point represents a year and their sizes scaled by<br> average area value. Their colours are also scaled by an average aspect ratio.<br> Wider aspects are more <span style='color: #e60000'>___red___</span>, longer aspects are more ___white___ for that year.",
+    subtitle = "The “coffee stain” plot shows the average areas (width x height) and aspect ratios<br> (width / height) by years of all 2D artworks created between __1545__ and __2012__ which<br> are exhibited by the Tate. Each point represents a year and their sizes scaled by<br> average area value. Their colours are also scaled by an average aspect ratio.<br> Wider aspects are more <span style='color: #e60000'>___red___</span>, longer aspects are more ___white___ for that year.",
     caption = "\n\n Data by Tate\n Visualization by Botan Ağın"
   ) +
   theme_void() +
