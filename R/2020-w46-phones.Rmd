@@ -1,8 +1,7 @@
 ---
 title: "Historical Phones"
-subtitle: "TidyTuesday 2020, Week 46"
 author: "Botan Ağın"
-date: "12/2/2020"
+date: "2020-12-02"
 output: html_document
 ---
 
@@ -22,7 +21,8 @@ library(here)
 ```{r fonts}
 font_add("Roboto Condensed",
          "RobotoCondensed-Regular.ttf", 
-         bold = "RobotoCondensed-Bold.ttf")
+         bold = "RobotoCondensed-Bold.ttf",
+         italic = "RobotoCondensed-BoldItalic.ttf")
 font_add("Roboto Condensed Light", 
          "RobotoCondensed-Light.ttf")
 font_add("FontAwesome5Free-Solid", 
@@ -50,9 +50,6 @@ tr_mobile <- mobile %>%
 ```
 
 ```{r plot}
-png(here("plots", "2020-w46-phones.png"), 
-    width = 10, height = 7, units = "in", res = 300)
-
 tr_mobile %>% 
   ggplot(aes(label = subscription, values = n)) +
   geom_pictogram(aes(colour = subscription), 
@@ -62,15 +59,15 @@ tr_mobile %>%
   labs(
     title = "MOBILE PHONE USAGE IN
     <span style='color:#00CED1'>TURKEY</span>",
-    subtitle = "It started as a luxury and became a necessity in two decades \n \n \n",
-    caption = "\n \n
+    subtitle = "It started as a <span style='color:#ffb3bf'>__luxury__</span> and became a <span style='color:gray30'>__necessity__</span> in two decades<br><br><br>",
+    caption = "\n\n
     Data: ourworldindata.org/technology-adoption
     Source: Hannah Ritchie (2017)
-    Visualization by @botanagin"
+    Visualization: Botan Ağın"
   ) +
   scale_color_manual(
     guide = FALSE,
-    values = c("black", "darkred")
+    values = c("black", "#b30000")
   ) +
   scale_label_pictogram(
     guide = FALSE,
@@ -82,12 +79,11 @@ tr_mobile %>%
   theme(
     strip.text = element_text(hjust = 0.5, face = "bold"),
     plot.title = element_markdown(hjust = 0.5, vjust = 0),
-    plot.background = element_rect(fill = "gray100"),
-    plot.subtitle = element_text(hjust = 0.5),
+    plot.subtitle = element_markdown(hjust = 0.5, family = "Roboto Condensed"),
     plot.caption = element_text(hjust = 0.5),
+    plot.background = element_rect(fill = "gray100"),
     plot.margin = margin(55, 20, 55, 20, unit = "pt")
   ) +
   facet_wrap(~ year, ncol = 3)
-
-dev.off()
+ggsave(here("plots", "2020-w46-phones.png"), width = 10, height = 7, dpi = 450)
 ```

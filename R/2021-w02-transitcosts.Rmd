@@ -48,7 +48,7 @@ p1 <- cities_exp %>%
   geom_col(aes(exp_cost, city), fill = "white") + 
   scale_x_continuous(trans = "reverse", breaks = c(0, 1000, 2000), labels=scales::dollar_format()) +
   scale_y_discrete(position = "right") +
-  labs(x = "# Expected cost (million) per km") +
+  labs(x = "Expected cost (million) per km") +
   theme_minimal() +
   theme(
     axis.text = element_text(family = "Raleway", face = "bold", color = "white"),
@@ -64,7 +64,7 @@ p2 <- cities_exp %>%
   ggplot() +
   geom_col(aes(exp_length, city), fill = "white") + 
   scale_x_continuous(breaks = c(0, 15, 30), labels = scales::unit_format(unit = "km")) +
-  labs(x = "# Expected progress per year") +
+  labs(x = "Expected progress per year") +
   theme_minimal() +
   theme(
     axis.text = element_text(family = "Raleway", face = "bold", color = "white"),
@@ -77,8 +77,8 @@ p2 <- cities_exp %>%
 
 (p1 + p2) +
   plot_annotation(
-    title = "TRANSIT PROJECTS AROUND THE WORLD \n INFRASTRUCTURE COSTS AND CONSTRUCTION SPEEDS",
-    caption = "\n Data by Transit Cost Project < > Visualization by Botan Ağın",
+    title = "TRANSIT PROJECTS AROUND THE WORLD\n INFRASTRUCTURE COSTS AND CONSTRUCTION SPEEDS",
+    caption = "\nData by Transit Cost Project || Visualization by Botan Ağın",
     theme = theme(
       plot.title = element_text(hjust = 0.5, family = "Raleway", face = "bold", size = 26, colour = "white"),
       plot.caption = element_text(hjust = 0.5, family = "Raleway", face = "bold", colour = "white"),

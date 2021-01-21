@@ -1,8 +1,7 @@
 ---
 title: "The Big Mac Index"
 author: "Botan Ağın"
-subtitle: "TidyTuesday 2020, Week 52"
-date: "12/22/2020"
+date: "2020-12-22"
 output: html_document
 ---
 
@@ -51,9 +50,6 @@ bigmac_tr <- bigmac %>%
 ```
 
 ```{r plot}
-png(here("plots", "2020-w52-bigmacindex.png"), 
-    width = 9, height = 9, units = "in", res = 300)
-
 bigmac_tr %>% 
   ggplot(aes(date, usd_adjusted, fill = valued, label = scales::percent(label))) +
   geom_area() +
@@ -68,7 +64,7 @@ bigmac_tr %>%
   labs(
     title = "__Dive Into the Turkish Lira (₺) with the <span style='color: #ffc72c'>Big Mac</span> Index <br>__",
     subtitle = "_“The big mac index was invented by The Economist in 1986 as a lighthearted guide to whether currencies <br> are at their “correct” level. It is based on the theory of purchasing-power parity (PPP), the notion that <br> in the long run exchange rates should move towards the rate that would equalise the prices of <br> an identical basket of goods and services (in this case, a burger) in any two countries” — The Economist_ <br><br> This graph shows how much the Turkish Lira has been over/under valued against the US Dollar in the last decade. <br>",
-    caption = " \n \n \n Data by The Economist \n Visualization by @botanagin"
+    caption = "\n\n\nData: The Economist || Visualization: Botan Ağın"
   ) +
   theme_void() +
   theme(
@@ -82,8 +78,7 @@ bigmac_tr %>%
                                      hjust = 0.5),
     plot.caption = element_text(family = "Merriweather", size = 10, 
                                 hjust = 0.5),
-    plot.margin = margin(t = 2, r = 1, b = 2, l = 1, unit = "cm")
+    plot.margin = margin(t = 2, r = 1, b = 1, l = 1, unit = "cm")
   )
-
-dev.off()
+ggsave(here("plots", "2020-w52-bigmacindex.png"), width = 9, height = 9, dpi = 450)
 ```

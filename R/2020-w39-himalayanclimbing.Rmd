@@ -1,7 +1,7 @@
 ---
 title: "Himalayan Climbing Expeditions"
 author: "Botan Ağın"
-date: "12/4/2020"
+date: "2020-12-04"
 output: html_document
 ---
 
