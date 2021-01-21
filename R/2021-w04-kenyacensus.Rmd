@@ -31,7 +31,6 @@ religions <- rKenyaCensus::V4_T2.30 %>%
   group_by(county) %>% 
   filter(prop == max(prop)) %>% 
   ungroup() %>% 
-  mutate(prop = if_else(religion == "islam", prop , -prop)) %>% 
   right_join(rKenyaCensus::KenyaCounties_SHP %>% 
               st_as_sf(), #%>% 
               #st_simplify(dTolerance = 50),
