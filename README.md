@@ -1,3 +1,4 @@
+![](https://raw.githubusercontent.com/botan/tidytuesday/main/plots/2021-w04-kenyacensus.png)
 ![](https://raw.githubusercontent.com/botan/tidytuesday/main/plots/2021-w03-artcollections.png)
 ![](https://raw.githubusercontent.com/botan/tidytuesday/main/plots/2021-w02-transitcosts.png)
 ![](https://raw.githubusercontent.com/botan/tidytuesday/main/plots/2020-w52-bigmacindex.png)
