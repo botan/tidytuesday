@@ -1,8 +1,7 @@
 ---
 title: "Palmer Penguins"
-subtitle: "TidyTuesday 2020, Week 31"
 author: "Botan Ağın"
-date: "11/30/2020"
+date: "2020-11-30"
 output: html_document
 ---
 
@@ -40,7 +39,7 @@ penguins_long <- penguins %>%
       str_replace("G$", "(g)"),
     sex = str_to_title(sex)
   ) %>% 
-  mutate_if(is.character, as.factor) %>% 
+  mutate(across(where(is.character), as.factor)) %>% 
   drop_na()
 ```
 
