@@ -1,7 +1,7 @@
 # #TidyTuesday
 
 ## 2021/08 W.E.B. Du Bois Challenge [[code]](https://github.com/botan/tidytuesday/blob/main/R/2021-w08-duboischallange.Rmd)
-![](https://raw.githubusercontent.com/botan/tidytuesday/main/plots/2021-w08-duboischallange.png))
+![](https://raw.githubusercontent.com/botan/tidytuesday/main/plots/2021-w08-duboischallange.png)
 
 ## 2021/04 Kenya Census [[code]](https://github.com/botan/tidytuesday/blob/main/R/2021-w04-kenyacensus.Rmd)
 ![](https://raw.githubusercontent.com/botan/tidytuesday/main/plots/2021-w04-kenyacensus.png)
