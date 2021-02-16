@@ -61,6 +61,5 @@ freed_slaves %>%
     plot.background = element_rect(fill = "#e0d5c8"),
     plot.margin = margin(0.5, 1, 0.25, 1, unit = "cm")
   )
-ggsave("demo.png", height = 10.6, width = 8.3, dpi = 300)
+ggsave(here::here("plots", "2021-w08-duboischallange.png"), height = 10.6, width = 8.3, dpi = 320)
 ```
-
