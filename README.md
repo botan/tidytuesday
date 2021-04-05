@@ -12,7 +12,7 @@
 ## 2021/02 Transit Cost Project [[code]](https://github.com/botan/tidytuesday/blob/main/R/2021-w02-transitcosts.Rmd)
 ![](https://raw.githubusercontent.com/botan/tidytuesday/main/plots/2021-w02-transitcosts.png)
 
-## 2021/02 Bring your own data - Academic Freedom in Turkey [[code]](https://github.com/botan/tidytuesday/blob/main/R/2021-w01-academicfreedom.R)
+## 2021/01 Bring your own data - Academic Freedom in Turkey [[code]](https://github.com/botan/tidytuesday/blob/main/R/2021-w01-academicfreedom.R)
 ![](https://raw.githubusercontent.com/botan/tidytuesday/main/plots/2021-w01-academicfreedom.png)
 
 ## 2020/52 Big Mac Index [[code]](https://github.com/botan/tidytuesday/blob/main/R/2020-w52-bigmac.Rmd)
