@@ -4,7 +4,7 @@ library(ggtext)
 library(showtext)
 library(here)
 
-font_add_google("Playfair Display")
+font_add_google("Playfair Display", "pd")
 showtext_auto()
 
 vdem_tr <- vdemdata::vdem %>% 
@@ -25,7 +25,7 @@ vdem_tr %>%
     subtitle = "Turkey has been ruling by <span style='color:gray30'>**Justice and Development Party**</span> since 2002.<br>The slope shows the academic freedom between **2002** and **2019** according to V-Dem index.<br><br>",
     caption = "\n\nData by V-Dem\nChart by Botan Ağın"
   ) +
-  theme_void(base_family = "Playfair Display") +
+  theme_void(base_family = "pd") +
   theme(
     plot.title = element_text(hjust = 0.5, size = 22, face = "bold"),
     plot.subtitle = element_markdown(hjust = 0.5, size = 14),
