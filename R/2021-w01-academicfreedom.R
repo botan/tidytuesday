@@ -30,7 +30,7 @@ df %>%
     y = NULL,
     title = "Academic Freedom in <span style='color:#a91101'>Turkey</span>", #flag = #e30a17
     subtitle = "Turkey has been ruling by <span style='color:grey40'>**Justice and Development Party**</span> since 2002. The red slope shows how the<br>academic freedom in Turkey changes 2002 to 2019 according to V-Dem academic freedom index. Grey<br>lines represents the other countries in the world.",
-    caption = "Data by V-Dem<br>Viz by Botan Ağın"
+    caption = "Data from V-Dem<br>Visualization by Botan Ağın"
   ) +
   theme_void(base_family = "Catamaran") + 
   theme(

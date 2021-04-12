@@ -41,7 +41,7 @@ ggplot(penguin_dots, aes(x, y, size = body_mass_g, colour = species)) +
   labs(
     title = "Palmer Penguins<br>\u2014<br>Distrubutions of Species:<br><span style='color: darkorange'>Adelie</span>,<br><span style='color: darkorchid'>Chinstrap</span>,<br>and <span style='color: darkcyan'>Gentoo</span><br>by Islands:<br><span style='color: grey30'>Biscoe</span>,<br><span style='color: grey30'>Dream</span>,<br>and <span style='color: grey30'>Torgersen</span><br>\u2014",
     subtitle = "*Each point represents a penguin<br>and their sizes scaled by body mass.",
-    caption = "Data: Gorman, Williams & Fraser (2014)\nViz: Botan Ağın"
+    caption = "Data: Gorman, Williams & Fraser (2014)\nVisualization: Botan Ağın"
   ) + 
   theme_void(base_family = "Comfortaa") + 
   theme(
