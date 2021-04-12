@@ -1,29 +1,16 @@
----
-title: "W.E.B. Du Bois Challenge"
-author: "Botan Ağın"
-date: "2/16/2021"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r packages}
+# Load packages
 library(tidyverse)
 library(showtext)
-```
+library(here)
 
-```{r font}
+# Load font
 font_add_google("Teko")
 showtext_auto()
-```
 
-```{r data}
+# Load data
 freed_slaves <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-02-16/freed_slaves.csv")
-```
 
-```{r wrangle}
+# Wrangle
 freed_slaves <- 
   freed_slaves %>% 
   janitor::clean_names() %>% 
@@ -31,9 +18,8 @@ freed_slaves <-
     label_y = if_else(free == last(free), NA_real_, slave)
   ) %>% 
   fill(label_y)
-```
 
-```{r plot}
+# Plot
 freed_slaves %>% 
   ggplot(aes(year, slave)) +
   geom_area(fill = "black") + 
@@ -61,5 +47,5 @@ freed_slaves %>%
     plot.background = element_rect(fill = "#e0d5c8"),
     plot.margin = margin(0.5, 1, 0.25, 1, unit = "cm")
   )
-ggsave(here::here("plots", "2021-w08-duboischallange.png"), height = 10.6, width = 8.3, dpi = 320)
-```
+ggsave(here("plots", "2021-w08-duboischallenge.png"), height = 10.6, width = 8.3, dpi = 320)
+

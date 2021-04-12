@@ -1,34 +1,20 @@
----
-title: "The Big Mac Index"
-author: "Botan Ağın"
-date: "2020-12-22"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r packages}
+# Load packages
 library(tidyverse)
 library(lubridate)
 library(ggtext)
 library(showtext)
 library(here)
-```
 
-```{r fonts}
+# Load fonts
 font_add_google("Merriweather")
 font_add_google("Old Standard TT")
 showtext_auto()
-```
 
-```{r data}
+# Load data
 tt <- tidytuesdayR::tt_load(2020, week = 52)
 bigmac <- tt$`big-mac`
-```
 
-```{r wrangle}
+# Wrangle
 bigmac_tr <- bigmac %>% 
   filter(name == "Turkey") %>% 
   mutate(
@@ -47,9 +33,9 @@ bigmac_tr <- bigmac %>%
   mutate(label = case_when(usd_adjusted == max(usd_adjusted) ~ usd_adjusted,
                            usd_adjusted == min(usd_adjusted) ~ usd_adjusted,
                            TRUE ~ NA_real_)) 
-```
 
-```{r plot}
+
+# Plot
 bigmac_tr %>% 
   ggplot(aes(date, usd_adjusted, fill = valued, label = scales::percent(label))) +
   geom_area() +
@@ -62,8 +48,8 @@ bigmac_tr %>%
   geom_point(aes(y = label)) +
   scale_fill_manual(values = c("#de2a42", "#ffffff")) +
   labs(
-    title = "__Dive Into the Turkish Lira (₺) with the <span style='color: #ffc72c'>Big Mac</span> Index <br>__",
-    subtitle = "_“The big mac index was invented by The Economist in 1986 as a lighthearted guide to whether currencies <br> are at their “correct” level. It is based on the theory of purchasing-power parity (PPP), the notion that <br> in the long run exchange rates should move towards the rate that would equalise the prices of <br> an identical basket of goods and services (in this case, a burger) in any two countries” — The Economist_ <br><br> This graph shows how much the Turkish Lira has been over/under valued against the US Dollar in the last decade. <br>",
+    title = "**Dive Into The Turkish Lira (₺) with The <span style='color: #ffc72c'>Big Mac</span> Index <br>**",
+    subtitle = "*“The big mac index was invented by The Economist in 1986 as a lighthearted guide to whether currencies<br>are at their “correct” level. It is based on the theory of purchasing-power parity (PPP), the notion that<br>in the long run exchange rates should move towards the rate that would equalise the prices of<br>an identical basket of goods and services (in this case, a burger) in any two countries” — The Economist*<br><br>This graph shows how much the Turkish Lira has been over/under valued against the US Dollar in the last decade.<br>",
     caption = "\n\n\nData: The Economist || Visualization: Botan Ağın"
   ) +
   theme_void() +
@@ -72,13 +58,12 @@ bigmac_tr %>%
                                margin = margin(t = -5.25, b = 5.25, unit = "cm")),
     legend.position = "none",
     plot.background = element_rect(fill = "gray60"),
-    plot.title = element_markdown(family = "Merriweather", size = 16, 
+    plot.title = element_markdown(family = "Merriweather", size = 20, 
                                   hjust = 0.5),
-    plot.subtitle = element_markdown(family = "Merriweather", size = 10, 
-                                     hjust = 0.5),
+    plot.subtitle = element_markdown(family = "Merriweather", size = 12, 
+                                     hjust = 0.5, lineheight = 1.2),
     plot.caption = element_text(family = "Merriweather", size = 10, 
                                 hjust = 0.5),
-    plot.margin = margin(t = 2, r = 1, b = 1, l = 1, unit = "cm")
+    plot.margin = margin(t = 2, r = 2, b = 1, l = 2, unit = "cm")
   )
-ggsave(here("plots", "2020-w52-bigmacindex.png"), width = 9, height = 9, dpi = 450)
-```
+ggsave(here("plots", "2020-w52-bigmacindex.png"), width = 11, height = 9, dpi = 450)

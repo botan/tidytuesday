@@ -1,31 +1,18 @@
----
-title: "Transit Costs Project"
-author: "Botan Ağın"
-date: "2021-01-05"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r packages}
+# Load packages
 library(tidyverse)
 library(patchwork)
 library(showtext)
-```
+library(here)
 
-```{r fonts}
+# Load font
 font_add_google("Raleway")
 showtext_auto()
-```
 
-```{r data}
+# Load data
 tt <- tidytuesdayR::tt_load(2021, week = 2)
 transit_cost <- tt$transit_cost
-```
 
-```{r wrangle}
+# Data wrangling
 cities_exp <- transit_cost %>% 
   select(city, start_year, end_year, length, real_cost) %>% 
   drop_na() %>% 
@@ -39,9 +26,9 @@ cities_exp <- transit_cost %>%
   summarise(exp_length = sum(length) / sum(duration),
             exp_cost = sum(real_cost) / sum(length)) %>% 
   ungroup()
-```
 
-```{r plot}
+# Plot
+
 p1 <- cities_exp %>% 
   mutate(city = fct_reorder(city, exp_cost)) %>%
   ggplot() +
@@ -77,8 +64,8 @@ p2 <- cities_exp %>%
 
 (p1 + p2) +
   plot_annotation(
-    title = "TRANSIT PROJECTS AROUND THE WORLD\n INFRASTRUCTURE COSTS AND CONSTRUCTION SPEEDS",
-    caption = "\nData by Transit Cost Project || Visualization by Botan Ağın",
+    title = "TRANSIT PROJECTS AROUND THE WORLD\nINFRASTRUCTURE COSTS AND CONSTRUCTION SPEEDS",
+    caption = "\nData from Transit Cost Project || Visualization by Botan Ağın",
     theme = theme(
       plot.title = element_text(hjust = 0.5, family = "Raleway", face = "bold", size = 26, colour = "white"),
       plot.caption = element_text(hjust = 0.5, family = "Raleway", face = "bold", colour = "white"),
@@ -86,5 +73,5 @@ p2 <- cities_exp %>%
       plot.margin = margin(3, 3, 1, 3, unit = "cm")
     )
   )
-ggsave(here::here("plots", "2021-w02-transitcosts.png"), width = 12, height = 18, dpi = 600)
-```
+ggsave(here("plots", "2021-w02-transitcosts.png"), width = 12, height = 18, dpi = 600)
+
