@@ -24,5 +24,5 @@
 ## 2020/39 Himalayan Climbers [[code]](https://github.com/botan/tidytuesday/blob/main/R/2020-w39-himalayanclimbing.Rmd)
 ![](https://raw.githubusercontent.com/botan/tidytuesday/main/plots/2020-w39-himalayanclimbing.png)
 
-## 2020/31 Palmer Penguins [[code]](https://github.com/botan/tidytuesday/blob/main/R/2020-w31-palmerpenguins.Rmd)
+## 2020/31 Palmer Penguins [[code]](https://github.com/botan/tidytuesday/blob/main/R/2020-w31-palmerpenguins.R)
 ![](https://raw.githubusercontent.com/botan/tidytuesday/main/plots/2020-w31-palmerpenguins.png)
