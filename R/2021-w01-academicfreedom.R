@@ -1,37 +1,55 @@
+# Load packages
 library(tidyverse)
 library(scales)
 library(ggtext)
 library(showtext)
 library(here)
 
-font_add_google("Playfair Display", "pd")
+# Load fonts
+font_add_google("Catamaran")
+font_add_google("Nunito")
 showtext_auto()
 
-vdem_tr <- vdemdata::vdem %>% 
-  filter(country_name == "Turkey", year %in% c(2002, max(.$year))) %>% 
-  select(year, v2xca_academ) %>% 
-  mutate(pct = percent(v2xca_academ))
+# Prepare data
+df <- vdemdata::vdem %>% 
+  select(country_name, v2xca_academ, year) %>% 
+  filter(year %in% c(2002, max(.$year))) %>% 
+  as_tibble()
 
-vdem_tr %>% 
-  ggplot(aes(year, v2xca_academ, label = pct)) +
-  geom_line(colour = "#e60000", size = 4) +
-  geom_point(colour = "#e60000", size = 3) +
-  geom_text(data = filter(vdem_tr, year == min(vdem_tr$year)), 
-            nudge_y = 0.025, family = "pd", fontface = "bold", size = 8) +
-  geom_text(data = filter(vdem_tr, year == max(vdem_tr$year)), 
-            nudge_y = -0.025, family = "pd", fontface = "bold", size = 8) +
+# Make plot
+df %>% 
+  ggplot(aes(year, v2xca_academ, group = country_name)) +
+  geom_line(data = filter(df, country_name != "Turkey"), alpha = 0.2) +
+  geom_line(data = filter(df, country_name == "Turkey"), colour = "#a91101", size = 2) +
+  geom_point(data = filter(df, country_name == "Turkey"), colour = "#a91101", size = 1) +
+  scale_x_continuous(breaks = c(2002, 2019), position = "top") +
+  scale_y_continuous(breaks = c(0, 0.6, 1),
+                     sec.axis = sec_axis(~ ., breaks = c(0, 0.1, 1))) +
   labs(
-    title = "ACADEMIC FREEDOM IN TURKEY",
-    subtitle = "Turkey has been ruling by <span style='color:gray30'>**Justice and Development Party**</span> since 2002.<br>The slope shows the academic freedom between **2002** and **2019** according to V-Dem index.<br><br>",
-    caption = "\n\nData by V-Dem\nChart by Botan Ağın"
+    x = NULL,
+    y = NULL,
+    title = "Academic Freedom in <span style='color:#a91101'>Turkey</span>", #flag = #e30a17
+    subtitle = "Turkey has been ruling by <span style='color:grey40'>**Justice and Development Party**</span> since 2002. The red slope shows how the<br>academic freedom in Turkey changes 2002 to 2019 according to V-Dem academic freedom index. Grey<br>lines represents the other countries in the world.",
+    caption = "Data by V-Dem<br>Viz by Botan Ağın"
   ) +
-  theme_void(base_family = "pd") +
+  theme_void(base_family = "Catamaran") + 
   theme(
-    plot.title = element_text(hjust = 0.5, size = 22, face = "bold"),
-    plot.subtitle = element_markdown(hjust = 0.5, size = 14),
-    plot.caption = element_text(hjust = 0.5, size = 10),
-    plot.margin = margin(2, 2, 1, 2, "cm")
+    axis.ticks = element_line(colour = "grey10", size = 0.4),
+    axis.ticks.length = unit(0.2, "cm"), 
+    axis.text = element_text(size = 10, family = "Nunito"),
+    axis.text.x.top = element_text(face = "bold", margin = unit(c(0, 0, 3, 0), "mm")),
+    axis.text.y.right = element_text(margin = unit(c(0, 0, 0, 2), "mm")),
+    axis.text.y.left = element_text(margin = unit(c(0, 2, 0, 0), "mm")),
+    legend.key = element_rect(fill = "NA", size = 3, colour = "NA"),
+    legend.position = "top",
+    legend.box = "horizontal",
+    legend.text = element_text(size = 10),
+    plot.title = element_markdown(size = 20, face = "bold",
+                                  margin = unit(c(0, 2.8, 0, -2.8), units = "cm")),
+    plot.title.position = "plot",
+    plot.subtitle = element_markdown(size = 12, lineheight = 1.2, 
+                                     margin = unit(c(0.2, 2.8, 0.7, -2.8), units = "cm")),
+    plot.caption = element_markdown(margin = unit(c(0.7, -3.8, 0, 3.8), units = "cm")),
+    plot.margin = margin(1, 4, 0.5, 4, unit = "cm")
   )
-ggsave(here("plots", "2021-w01-academicfreedom.png"), 
-       width = 9, height = 9, dpi = 320)
-  
+ggsave(here("plots", "2021-w01-academicfreedom.png"), width = 8, height = 6, dpi = 320)
